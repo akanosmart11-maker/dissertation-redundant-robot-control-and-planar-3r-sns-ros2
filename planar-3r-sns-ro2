@@ -1,0 +1,37 @@
+Planar 3R SNS Controller (ROS2)
+A ROS2 Jazzy package implementing kinematic control of a planar 3-link redundant robot arm using the Saturation in the Null Space (SNS) algorithm (Flacco, De Luca & Khatib, 2015), ported from the author's MSc dissertation MATLAB/Python implementation and validated in simulation and on a physical 7-DOF Franka Research 3 robot.
+
+What this does
+Defines the robot as a URDF (link lengths matching the dissertation's planar 3R model: 1.0 m / 0.8 m / 0.6 m)
+Visualises the robot live in RViz2
+Runs a custom ROS2 node (sns_controller) that:
+Computes forward kinematics and the analytical Jacobian
+Commands the end-effector along a circular trajectory
+Applies an SNS-style pseudoinverse control law with joint velocity limits, publishing live sensor_msgs/JointState messages
+Background
+This project extends work from the author's MSc dissertation, "Null-Space Saturation with Dynamic Task Priorities for Redundant Robot Control" (Kingston University London, 2026), which implemented and experimentally validated the SNS and GSNS algorithms on a physical Franka Research 3 robot arm. See [dissertation summary / link] for details and physical hardware results.
+
+Demo
+
+
+Requirements
+Ubuntu 24.04
+ROS2 Jazzy
+Python 3, numpy
+Running it
+# Terminal 1
+ros2 run robot_state_publisher robot_state_publisher \
+  --ros-args -p robot_description:="$(cat urdf/planar_3r.urdf)"
+
+# Terminal 2
+ros2 run planar_3r_control sns_controller
+
+# Terminal 3
+rviz2
+In RViz: Add → RobotModel, set Fixed Frame to base_link.
+
+Roadmap
+ Full iterative SNS saturation logic (Algorithm 1/2, Flacco et al. 2015)
+ GSNS Cartesian constraint (elbow position ceiling)
+ Gazebo physics simulation
+ Port to C++ MDEOF
