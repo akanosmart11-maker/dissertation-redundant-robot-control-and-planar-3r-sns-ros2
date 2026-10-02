@@ -1,6 +1,7 @@
 # dissertation-redundant-robot-control
 # MSc Project: Null-Space Saturation with Dynamic Task Priorities
 ## Complete Code Package — Milestones 1–4
+<img width="4284" height="5712" alt="IMG_7330" src="https://github.com/user-attachments/assets/c5b26b79-c4b3-41eb-94c2-975aa33081af" />
 
 Student: Akano Smart
 Supervisor: Dr. Claudio Gaz
